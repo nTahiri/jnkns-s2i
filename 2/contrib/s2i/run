@@ -8,6 +8,21 @@
 #
 echo "=====> run script started ...."
 
+set -e
+
+echo "**********************************************************"
+echo "*"
+echo "*"
+echo "*                      $JENKINS_PASSWORD"
+echo "*"
+echo "*"
+echo "**********************************************************"
+
+
+
+
+
+
 source /usr/local/bin/jenkins-common.sh
 source /usr/local/bin/kube-slave-common.sh
 
@@ -30,12 +45,12 @@ if [ "${CONTAINER_MEMORY_IN_BYTES}" -lt "${DEFAULT_MEMORY_CEILING}" ]; then
             CONTAINER_HEAP_PERCENT=0.50
         fi
     fi
-    
+
     CONTAINER_MEMORY_IN_MB=$((${CONTAINER_MEMORY_IN_BYTES}/1024**2))
     CONTAINER_HEAP_MAX=$(echo "${CONTAINER_MEMORY_IN_MB} ${CONTAINER_HEAP_PERCENT}" | awk '{ printf "%d", $1 * $2 }')
-    
+
     JAVA_MAX_HEAP_PARAM="-Xmx${CONTAINER_HEAP_MAX}m"
-fi 
+fi
 
 if [ -z $JAVA_GC_OPTS ]; then
   JAVA_GC_OPTS="-XX:+UseParallelGC -XX:MaxPermSize=100m -XX:MinHeapFreeRatio=20 -XX:MaxHeapFreeRatio=40 -XX:GCTimeRatio=4 -XX:AdaptiveSizePolicyWeight=90"

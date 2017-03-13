@@ -338,7 +338,9 @@ main() {
     fi
 
     echo -e "\nCleaning up locks"
-    rm -r "$REF_DIR"/*.lock
+    if [[ -f "$REF_DIR"/*.lock ]]; then
+            rm -r "$REF_DIR"/*.lock
+    fi
 }
 
 main "$@"

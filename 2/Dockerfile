@@ -71,7 +71,8 @@ RUN chown -R 1001:0  /opt/openshift && chown -R 1001:0 /var/lib/jenkins && chown
 
 RUN chmod -R 777  /opt/openshift && chmod -R 777 /var/lib/jenkins && chmod -R 777 /var/log && chmod -R 777 /usr/libexec/s2i && \
         chmod 777 /usr/local/bin/install-plugins.sh && chmod 777 /usr/local/bin/fix-permissions && \
-        chmod 777 /usr/libexec/s2i/run && chmod 777 /usr/libexec/s2i/assemble && chmod 777 /usr/libexec/s2i/usage
+        chmod 777 /usr/libexec/s2i/run && chmod 777 /usr/libexec/s2i/assemble 
+        #&& chmod 777 /usr/libexec/s2i/usage
 
 RUN chmod +x /usr/local/bin/install-plugins.sh && chmod +x /usr/local/bin/fix-permissions
 RUN chgrp -R 0 /var/log && chmod -R g+rw /var/log && chmod -R g+x /var/log
